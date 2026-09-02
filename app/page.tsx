@@ -56,11 +56,18 @@ export default function ChatPage() {
         padding: "0 16px",
       }}
     >
-      <header style={{ padding: "24px 0 16px", borderBottom: "1px solid #e5e3dc" }}>
-        <h1 style={{ fontSize: "18px", fontWeight: 500, margin: 0 }}>はたてに聞く</h1>
-        <p style={{ fontSize: "13px", color: "#777", margin: "6px 0 0" }}>
-          業務の引き継ぎ内容について質問できます。回答は引き継ぎ資料の範囲に限られます。
-        </p>
+      <header style={{ padding: "24px 0 16px", borderBottom: "1px solid #e5e3dc", display: "flex", alignItems: "center", gap: "12px" }}>
+        <img
+          src="/appu-kun.jpg"
+          alt="アップくん"
+          style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+        />
+        <div>
+          <h1 style={{ fontSize: "18px", fontWeight: 500, margin: 0 }}>アップくんに聞く</h1>
+          <p style={{ fontSize: "13px", color: "#777", margin: "4px 0 0" }}>
+            業務の引き継ぎ内容について質問できます。回答は引き継ぎ資料の範囲に限られます。
+          </p>
+        </div>
       </header>
 
       <div style={{ flex: 1, padding: "16px 0", display: "flex", flexDirection: "column", gap: "12px" }}>
