@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "はたてに聞く",
+  title: "アップくんに聞く",
   description: "社内向け・引き継ぎ用の分身AI",
 };
 
