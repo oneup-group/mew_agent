@@ -7,8 +7,29 @@ type Message = {
   text: string;
 };
 
+const GREETING: Message = {
+  role: "assistant",
+  text: "アップくんです。業務の引き継ぎ内容について質問できます。例えば「ビアターの対象はなぜ北大生じゃないんですか？」のように聞いてみてください。",
+};
+
+function Avatar() {
+  return (
+    <img
+      src="/appu-kun.jpg"
+      alt="アップくん"
+      style={{
+        width: "32px",
+        height: "32px",
+        borderRadius: "50%",
+        objectFit: "cover",
+        flexShrink: 0,
+      }}
+    />
+  );
+}
+
 export default function ChatPage() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([GREETING]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -71,41 +92,38 @@ export default function ChatPage() {
       </header>
 
       <div style={{ flex: 1, padding: "16px 0", display: "flex", flexDirection: "column", gap: "12px" }}>
-        {messages.length === 0 && (
-          <p style={{ fontSize: "14px", color: "#999", margin: "24px 0" }}>
-            例：「ビアターの対象はなぜ北大生じゃないんですか？」のように聞いてみてください。
-          </p>
-        )}
-
         {messages.map((m, i) => (
           <div
             key={i}
             style={{
               alignSelf: m.role === "user" ? "flex-end" : "flex-start",
+              display: "flex",
+              alignItems: "flex-end",
+              gap: "8px",
               maxWidth: "85%",
-              background: m.role === "user" ? "#2f6f5e" : "#f0efe9",
-              color: m.role === "user" ? "#fff" : "#1a1a1a",
-              padding: "10px 14px",
-              borderRadius: "10px",
-              fontSize: "14px",
-              lineHeight: 1.7,
-              whiteSpace: "pre-wrap",
             }}
           >
-            {m.text}
+            {m.role === "assistant" && <Avatar />}
+            <div
+              style={{
+                background: m.role === "user" ? "#2f6f5e" : "#f0efe9",
+                color: m.role === "user" ? "#fff" : "#1a1a1a",
+                padding: "10px 14px",
+                borderRadius: "10px",
+                fontSize: "14px",
+                lineHeight: 1.7,
+                whiteSpace: "pre-wrap",
+              }}
+            >
+              {m.text}
+            </div>
           </div>
         ))}
 
         {loading && (
-          <div
-            style={{
-              alignSelf: "flex-start",
-              fontSize: "13px",
-              color: "#999",
-              padding: "4px 2px",
-            }}
-          >
-            考え中...
+          <div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center", gap: "8px" }}>
+            <Avatar />
+            <span style={{ fontSize: "13px", color: "#999" }}>考え中...</span>
           </div>
         )}
 
